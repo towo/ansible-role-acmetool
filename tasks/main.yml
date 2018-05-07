@@ -1,0 +1,81 @@
+---
+# tasks file for acmetool
+- name: Include OS-specific variables
+  include_vars: "{{ ansible_os_family }}.yml"
+
+- name: Include OS-specific installation
+  include_tasks: "install-{{ ansible_os_family }}.yml"
+
+- name: Assert that acmetool_method is valid
+  assert:
+    that: acmetool_method in valid_acmetool_methods
+
+- name: Check webroot requirements
+  assert:
+    that:
+      - acmetool_webroot_directory != ''
+    msg: 'Please set `acmetool_webroot_directory`'
+
+- name: Create system user for acmetool runs
+  user:
+    name: "{{ acmetool_user }}"
+    home: "{{ acmetool_working_directory }}"
+    comment: "acmetool system user"
+    system: yes
+
+# This group already exists on Debian, but we may expand this role.
+- name: Create group for certificate access
+  group:
+    name: 'ssl-cert'
+    system: yes
+
+- name: Ensure working directory exists with correct permissions
+  file:
+    path: "{{ acmetool_working_directory }}"
+    owner: "{{ acmetool_user }}"
+    group: 'ssl-cert'
+    mode: 0750
+    state: directory
+
+- name: Create hook directory
+  file:
+    path: "{{ acmetool_hook_directory }}"
+    owner: root
+    group: root
+    mode: 0755
+    state: directory
+  when: acmetool_use_hooks
+
+- name: Create webroot path, if necessary
+  file:
+    path: "{{ acmetool_webroot_path }}"
+    owner: "{{ acmetool_user }}"
+    group: "{{ acmetool_access_group }}"
+    mode: 0775
+    state: directory
+  when: acmetool_method == 'webroot'
+
+- name: Template out responses file
+  template:
+    src: 'responses.j2'
+    dest: "{{ acmetool_working_directory }}/conf/responses"
+    owner: "{{ acmetool_user }}"
+    group: 'root'
+    mode: 0640
+  notify:
+    - 'Run acmetool quickstart'
+
+- name: Template out permissions file
+  template:
+    src: 'perm.j2'
+    dest: "{{ acmetool_working_directory }}/conf/perm"
+    owner: "{{ acmetool_user }}"
+    group: 'root'
+    mode: 0640
+
+- name: Run acmetool quickstart
+  shell: >
+    acmetool quickstart
+    --response-file {{ acmetool_working_directory }}/conf/responses
+  become: yes
+  become_user: "{{ acmetool_user }}"

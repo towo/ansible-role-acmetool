@@ -1,0 +1,5 @@
+---
+__acmetool_package_name: 'acmetool'
+__acmetool_restart_services: ''
+__acmetool_working_directory: '/var/lib/acme'
+__acmetool_hook_directory: '/usr/lib/acme/hooks'

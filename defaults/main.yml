@@ -1,0 +1,15 @@
+---
+# defaults file for acmetool
+acmetool_agreement_url: "https://letsencrypt.org/documents/LE-SA-v1.2-November-15-2017.pdf"
+acmetool_external_source: "" # eg ppa:hlandau/acme
+acmetool_hook_directory: "{{ __acmetool_hook_directory }}"
+acmetool_method: webroot
+acmetool_package_name: "{{ __acmetool_package_name }}"
+acmetool_restart_services: "{{ __acmetool_restart_services }}"
+acmetool_use_hooks: true
+acmetool_user: 'acmetool'
+acmetool_working_directory: "{{ __acmetool_working_directory }}"
+acmetool_endpoints:
+  le-live: https://acme-v02.api.letsencrypt.org/directory
+  le-staging: https://acme-staging-v02.api.letsencrypt.org/directory
+acmetool_endpoint: 'le-staging'

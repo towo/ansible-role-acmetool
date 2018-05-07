@@ -1,0 +1,23 @@
+galaxy_info:
+  author: Tobias Wolter
+  description: Set up and configure acmetool
+  license: LGPL3-3.0-or-later
+  min_ansible_version: 1.2
+  platforms:
+    - name: Debian
+      versions:
+     - 9
+  #   - 25
+  # - name: SomePlatform
+  #   versions:
+  #   - all
+  #   - 1.0
+  #   - 7
+  #   - 99.99
+
+  galaxy_tags:
+    - acme
+    - letsencrypt
+    - acmetool
+
+dependencies: []

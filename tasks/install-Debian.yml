@@ -1,0 +1,10 @@
+---
+- name: Set up external source
+  apt_repository:
+    repo={{ acmetool_external_source }}
+  when: acmetool_external_source
+
+- name: Install Debian package
+  apt:
+    name: "{{ acmetool_package_name }}"
+    state: present

@@ -1,0 +1,9 @@
+---
+# vars file for acmetool
+valid_acmetool_methods:
+  - webroot
+  - proxy
+  - stateless
+  - redirector
+  - listen
+  - hook
