@@ -15,6 +15,7 @@
     that:
       - acmetool_webroot_directory != ''
     msg: 'Please set `acmetool_webroot_directory`'
+  when: acmetool_method == 'webroot'
 
 - name: Create system user for acmetool runs
   user:
