@@ -2,7 +2,7 @@ acme-enter-email: {{ acmetool_admin_email }}
 acme-agreement: {{ acmetool_agreement_url }}: true
 acmetool-quickstart-choose-server: {{ acmetool_endpoints[acmetool_endpoint] }}
 acmetool-quickstart-choose-method: {{ acmetool_method }}
-{% if acmetool_webroot_directory %}
+{% if acmetool_webroot_directory|default(false) %}
 acmetool-quickstart-webroot-path: "{{ acmetool_webroot_directory }}"
 acmetool-quickstart-webroot-path-unlikely: true
 {% endif %}
