@@ -1,6 +1,8 @@
 satisfy:
         names:
                 - {{ item.primary }}
+{% if item.alternates|default(false) %}
 {% for domain in item.alternates %}
                 - {{ domain }}
 {% endfor %}
+{% endif %}
