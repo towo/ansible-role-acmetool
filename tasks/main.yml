@@ -112,7 +112,7 @@
 
 - name: Set desired domains
   template:
-    src: "templates/acmetool/want.j2"
+    src: "want.j2"
     dest: "{{ acmetool_working_directory }}/desired/{{ item.primary }}"
     owner: 'root'
     group: 'root'
