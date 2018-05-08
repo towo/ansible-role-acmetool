@@ -97,6 +97,7 @@
   when:
     - item.name
     - item.src
+
 - name: Run acmetool quickstart
   shell: >
     acmetool quickstart
