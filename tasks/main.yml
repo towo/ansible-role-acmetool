@@ -43,7 +43,7 @@
     path: "{{ acmetool_working_directory }}/conf"
     owner: "{{ acmetool_user }}"
     group: 'root'
-    mode: 0750
+    mode: 0755
     state: directory
 
 - name: Ensure hook directory exists
@@ -82,7 +82,7 @@
     dest: "{{ acmetool_working_directory }}/conf/responses"
     owner: "{{ acmetool_user }}"
     group: 'root'
-    mode: 0640
+    mode: 0644
   notify:
     - 'Run acmetool quickstart'
 
@@ -92,7 +92,7 @@
     dest: "{{ acmetool_working_directory }}/conf/perm"
     owner: "{{ acmetool_user }}"
     group: 'root'
-    mode: 0640
+    mode: 0644
 
 - name: Template out additional configuration files
   template:

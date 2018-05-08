@@ -10,6 +10,8 @@ acmetool_use_hooks: true
 acmetool_user: 'acmetool'
 acmetool_working_directory: "{{ __acmetool_working_directory }}"
 acmetool_endpoints:
-  le-live: https://acme-v02.api.letsencrypt.org/directory
-  le-staging: https://acme-staging-v02.api.letsencrypt.org/directory
+  # le-live: https://acme-v02.api.letsencrypt.org/directory
+  # le-staging: https://acme-staging-v02.api.letsencrypt.org/directory
+  le-live: https://acme-v01.api.letsencrypt.org/directory
+  le-staging: https://acme-staging-v01.api.letsencrypt.org/directory
 acmetool_endpoint: 'le-staging'
