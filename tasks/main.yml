@@ -120,3 +120,5 @@
   with_items: "{{ acmetool_domains }}"
   when:
     - item.primary
+  notify:
+    - 'Run acmetool reconcile'
