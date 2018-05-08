@@ -53,7 +53,7 @@
     owner: root
     group: root
     mode: 0755
-  with_item: "{{ acmetool_hook_scripts }}"
+  with_items: "{{ acmetool_hook_scripts }}"
   when:
     - item.name
     - item.src
