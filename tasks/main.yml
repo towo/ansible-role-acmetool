@@ -46,6 +46,18 @@
     state: directory
   when: acmetool_use_hooks
 
+- name: Install optional hook scripts
+  copy:
+    src: "{{ item.src }}"
+    dest: "{{ acmetool_hook_directory }}/{{ item.name }}"
+    owner: root
+    group: root
+    mode: 0755
+  with_item: "{{ acmetool_hook_scripts }}"
+  when:
+    - item.name
+    - item.src
+
 - name: Create webroot path, if necessary
   file:
     path: "{{ acmetool_webroot_path }}"
@@ -73,6 +85,17 @@
     group: 'root'
     mode: 0640
 
+- name: Template out additional configuration files
+  template:
+    src: "{{ item.src }}"
+    dest: "{{ acmetool_working_directory }}/conf/{{ item.name }}"
+    owner: "{{ acmetool_user }}"
+    group: 'root'
+    mode: '0640'
+  with_items: "{{ acmetool_extra_configs }}"
+  when:
+    - item.name
+    - item.src
 - name: Run acmetool quickstart
   shell: >
     acmetool quickstart
