@@ -110,5 +110,6 @@
   shell: >
     acmetool quickstart
     --response-file {{ acmetool_working_directory }}/conf/responses
+    --batch
   become: yes
   become_user: "{{ acmetool_user }}"
