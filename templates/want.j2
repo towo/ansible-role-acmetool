@@ -1,0 +1,6 @@
+satisfy:
+        names:
+                - {{ item.primary }}
+{% for domain in item.alternates %}
+                - {{ domain }}
+{% endfor %}

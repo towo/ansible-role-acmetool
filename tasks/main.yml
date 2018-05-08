@@ -109,3 +109,14 @@
     - item.src
   notify:
     - 'Run acmetool quickstart'
+
+- name: Set desired domains
+  template:
+    src: "templates/acmetool/want.j2"
+    dest: "{{ acmetool_working_directory }}/desired/{{ item.primary }}"
+    owner: 'root'
+    group: 'root'
+    mode: '0644'
+  with_items: "{{ acmetool_domains }}"
+  when:
+    - item.primary
