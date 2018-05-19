@@ -37,6 +37,7 @@
     group: 'ssl-cert'
     mode: 0750
     state: directory
+    recurse: yes
 
 - name: Ensure conf directory exists
   file:
